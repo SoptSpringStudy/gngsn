@@ -7,8 +7,8 @@
 ``` 
 DI : Dependency Injection
 AOP : Aspect Oriented Programming
-MVC : model-view-controller
-JDBC : 
+MVC : Model-View-Controller
+JDBC : Java Database Connectivity
 ```
 
 프레임워크? 업무를 정해놓은 추상적인 틀
