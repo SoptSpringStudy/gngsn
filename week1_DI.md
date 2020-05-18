@@ -7,8 +7,8 @@
 ``` 
 DI : Dependency Injection
 AOP : Aspect Oriented Programming
-MVC :
-JDBC : 
+MVC : Model-View-Controller
+JDBC : Java Database Connectivity
 ```
 
 프레임워크? 업무를 정해놓은 추상적인 틀
@@ -51,23 +51,133 @@ JDBC :
 
 
 
-동관 개발환경 구축 7분 14초
+## 3-1. DI (Dependency Injection)
 
-## 1-1. 개발 환경 구축
+배터리 일체형 : 배터리가 떨어지면 제품을 다시 구매
 
-1. JAVA tjfcl
-2. 환경변수 설정
-3. IDE
+배터리 분리형 : 배터리가 떨어지면 배터리만 교체
+
+--> 객체지향프로그램의 **유연성**
+
+``` java
+// 일체형 ~
+public class DI1 { 
+  private Battery battery; 
+  public ElectronicCarToy() { 
+    battery = new NormalBattery(); 
+  } 
+}
+```
+
+``` java
+// 분리형 ~
+public class DI2 { 
+  private Battery battery; 
+  public ElectronicRobotToy() {
+  } 
+  public void setBattery(Battery battery) { 
+    this.battery = battery; 
+  } 
+}
+```
+
+``` java
+// 분리형 ~
+public class ElectronicRadioToy {
+  private Battery battery; 
+  public ElectronicRadioToy(Battery battery) {
+    this.battery = battery; 
+  } 
+  public void setBattery(Battery battery) {
+    this.battery = battery; 
+  } 
+}
+```
+
+외부에서 생성해 의존성을 더하는 것
 
 
 
 
 
+## 3-2. 다양한 의존 객체 주입
 
+1. 생성자를 이용한 의존 객체 주입
 
+   ``` java
+   public StudentResgisterService(StudentDao studentDao) {
+     this.studentDao = studentDao;
+   }
+   👇🏻
+   <bean id="registerService" class="ems.member.service.StudentRegisterService">
+     <constructor-arg ref="studentDao" ></constructor-arg> </bean>
+   ```
 
+   
 
+2. Setter를 이용한 의존 객체 주입
 
+   ``` java
+   public void setJdbcUrl(String jdbcUrl) { 
+     this.jdbcUrl = jdbcUrl; 
+   } 
+   public void setUserId(String userId) {
+     this.userId = userId; 
+   } 
+   public void setUserPw(String userPw) {
+     this.userPw = userPw;
+   }
+   👇🏻 property 생성 (set 없애고 앞글자 소문자로 ~ )
+   <bean id="dataBaseConnectionInfoDev" class="ems.member.DataBaseConnectionInfo">
+     <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+     <property name="userId" value="scott" /> 
+     <property name="userPw" value="tiger" />
+   </bean>
+   ```
 
+   
 
+3. List타입 의존 객체 주입
 
+   ``` java
+   public void setDevelopers(List<String> developers) { 
+     this.developers = developers; 
+   }
+   👇🏻 
+   <property name="developers">
+   <list> 
+     <value>Cheney.</value> 
+     <value>Eloy.</value> 
+     <value>Jasper.</value> 
+     <value>Dillon.</value> 
+     <value>Kian.</value> 
+   </list> 
+   </property>
+   ```
+
+   
+
+4. Map타입 객체 주입
+
+``` java
+public void setAdministrators(Map<String, String> administrators) {
+  this.administrators = administrators; 
+}
+👇🏻 
+<property name="administrators">
+  <map>
+    <entry> 
+      <key> 
+        <value>Cheney</value> 
+      </key>
+        <value>cheney@springPjt.org</value> 
+    </entry> 
+    <entry> 
+  		<key>
+  			<value>Jasper</value>
+  		</key> 
+  			<value>jasper@springPjt.org</value> 
+  	</entry> 
+  </map>
+</property>
+```
