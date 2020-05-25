@@ -3,18 +3,22 @@ package com.spring;
 import java.util.List;
 import java.util.Map;
 
-public class ProfileModel {
+public class StudentModel {
     private String name;
     private Integer age;
     private String soptDept;
     private List<String> Friends;
     private Map<String, String> proLangs;
 
-    public ProfileModel() {
+    public StudentModel() {
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setAge(Integer age) {
