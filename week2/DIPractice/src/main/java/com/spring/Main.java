@@ -2,11 +2,11 @@ package com.spring;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-public class Profile {
+public class Main {
     public static void main(String[] args) {
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext(
                 "classpath:applicationContext.xml");
-        ProfileModel pm = ctx.getBean("Itsme", ProfileModel.class);
+        StudentModel pm = ctx.getBean("Itsme", StudentModel.class);
         pm.introMyself();
     }
 }
