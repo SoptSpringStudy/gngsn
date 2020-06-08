@@ -13,6 +13,9 @@ public class StudentMain {
         String[] name = {"mj", "gs", "dk", "hs", "hw"};
         int[] age = {24, 23, 26, 24, 24};
         String[] soptDept = {"server", "server", "server", "android", "android"};
+        // context.xml - Bean 객체를 생성해 줌
+        // String[] ctxs = {"classpath:appContext.xml"};
+//      GenericXmlApplicationContext ctx = new GenericXmlApplicationContext(ctx);
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(StudentConfig.class);
 
         StudentRegisterService registerService = ctx.getBean("studentRegisterService", StudentRegisterService.class);
