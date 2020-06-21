@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 자동 주입 어노테이션을 사용하기 위한 태그 -->
+    <context:annotation-config/>
+
+    <bean id="studentDao" class="com.spring.dao.StudentDao"/>
+    <bean id="studentRegisterService" class="com.spring.services.StudentRegisterService"/>
+    <bean id="studentSearchService" class="com.spring.services.StudentSearchService"/>
+
+</beans>
